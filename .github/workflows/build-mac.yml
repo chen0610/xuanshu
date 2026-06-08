@@ -9,6 +9,9 @@ on:
     tags:
       - "v*"
 
+permissions:
+  contents: write
+
 jobs:
   build-mac:
     runs-on: macos-latest
@@ -40,3 +43,18 @@ jobs:
             dist/mac*
             dist/latest-mac.yml
           if-no-files-found: warn
+
+      - name: Publish GitHub Release
+        if: startsWith(github.ref, 'refs/tags/')
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          tag="${GITHUB_REF_NAME}"
+          files=()
+          for pattern in dist/*.dmg dist/*.zip dist/*.pkg dist/latest-mac.yml; do
+            for file in $pattern; do
+              [ -f "$file" ] && files+=("$file")
+            done
+          done
+          gh release view "$tag" >/dev/null 2>&1 || gh release create "$tag" --title "$tag" --notes "Release $tag"
+          gh release upload "$tag" "${files[@]}" --clobber
