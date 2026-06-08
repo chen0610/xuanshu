@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>玄枢-Thoughts are clear</title>
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https: http://*.byteimg.com https://*.byteimg.com http://localhost:9090 http://127.0.0.1:8000 http://127.0.0.1:7242; connect-src 'self' http://localhost:9090 http://127.0.0.1:8000 http://127.0.0.1:7242 https://xs-api.bodahu.com http://xs-api-dev.bodahu.com https://*.volces.com https://*.tos-cn-beijing.volces.com https://tos-cn-beijing.volces.com https:"
+    />
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+    <style>
+        /* 颜色定义 */
+        :root {
+            --primary-color: #007bff;
+        }
+
+        /* 通用线条样式 */
+        .icon-stroke {
+            fill: none;
+            stroke: #007bff;
+            stroke-width: 8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* 中心六边形 */
+        .center-hex {
+            transform-origin: 100px 100px;
+            animation: pulse-hex 3s ease-in-out infinite;
+        }
+
+        /* 内部的小六边形/核心 */
+        .inner-core {
+            fill: none;
+            stroke: #007bff;
+            stroke-width: 6;
+            opacity: 0.7;
+            transform-origin: 100px 100px;
+            animation: rotate-core 10s linear infinite;
+        }
+
+        /* 外围连接线和节点组 */
+        .outer-group {
+            transform-origin: 100px 100px;
+            animation: rotate-outer 20s linear infinite;
+        }
+
+        /* 连接线动画 - 模拟数据传输 */
+        .connector-line {
+            stroke-dasharray: 4 4;
+            animation: dash-flow 0.5s linear infinite;
+        }
+
+        /* 外围圆点 */
+        .node-circle {
+            fill: #fff;
+            stroke: #007bff;
+            stroke-width: 6;
+            r: 10;
+            transition: all 0.3s ease;
+            animation: pulse-node 2s ease-in-out infinite alternate;
+        }
+        
+        /* 让每个节点的动画稍微错开 */
+        .node-group:nth-child(1) .node-circle { animation-delay: 0s; }
+        .node-group:nth-child(2) .node-circle { animation-delay: 0.2s; }
+        .node-group:nth-child(3) .node-circle { animation-delay: 0.4s; }
+        .node-group:nth-child(4) .node-circle { animation-delay: 0.6s; }
+        .node-group:nth-child(5) .node-circle { animation-delay: 0.8s; }
+        .node-group:nth-child(6) .node-circle { animation-delay: 1.0s; }
+
+        /* 动画定义 */
+        @keyframes rotate-outer {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes rotate-core {
+            from { transform: rotate(360deg) scale(0.6); }
+            to { transform: rotate(0deg) scale(0.6); }
+        }
+
+        @keyframes pulse-hex {
+            0%, 100% { transform: scale(1); stroke-opacity: 1; }
+            50% { transform: scale(1.05); stroke-opacity: 0.8; }
+        }
+
+        @keyframes pulse-node {
+            0% { r: 10; stroke-width: 6; }
+            100% { r: 12; stroke-width: 8; }
+        }
+        
+        @keyframes dash-flow {
+            to { stroke-dashoffset: -30; }
+        }
+    </style>
+
+    <!-- 内部核心 (稍微小一点的六边形) -->
+    <path d="M100 70 L126 85 L126 115 L100 130 L74 115 L74 85 Z" class="inner-core" />
+
+    <!-- 主要六边形 -->
+    <path d="M100 60 L135 80 L135 120 L100 140 L65 120 L65 80 Z" class="icon-stroke center-hex" />
+
+    <!-- 外围节点组，旋转 -->
+    <g class="outer-group">
+        <!-- 6个方向的节点 -->
+        <g class="node-group" transform="rotate(0, 100, 100)">
+            <line x1="100" y1="60" x2="100" y2="30" class="icon-stroke connector-line" />
+            <circle cx="100" cy="25" class="node-circle" />
+        </g>
+        <g class="node-group" transform="rotate(60, 100, 100)">
+            <line x1="100" y1="60" x2="100" y2="30" class="icon-stroke connector-line" />
+            <circle cx="100" cy="25" class="node-circle" />
+        </g>
+        <g class="node-group" transform="rotate(120, 100, 100)">
+            <line x1="100" y1="60" x2="100" y2="30" class="icon-stroke connector-line" />
+            <circle cx="100" cy="25" class="node-circle" />
+        </g>
+        <g class="node-group" transform="rotate(180, 100, 100)">
+            <line x1="100" y1="60" x2="100" y2="30" class="icon-stroke connector-line" />
+            <circle cx="100" cy="25" class="node-circle" />
+        </g>
+        <g class="node-group" transform="rotate(240, 100, 100)">
+            <line x1="100" y1="60" x2="100" y2="30" class="icon-stroke connector-line" />
+            <circle cx="100" cy="25" class="node-circle" />
+        </g>
+        <g class="node-group" transform="rotate(300, 100, 100)">
+            <line x1="100" y1="60" x2="100" y2="30" class="icon-stroke connector-line" />
+            <circle cx="100" cy="25" class="node-circle" />
+        </g>
+    </g>
+</svg>
